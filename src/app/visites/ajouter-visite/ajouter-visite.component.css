@@ -1,0 +1,34 @@
+.header-1{
+  background-color: #ffffb3;
+  text-align: center;
+}
+.header-2 {
+  background-color: #ffcccc;
+  text-align: center;
+}
+.header-3{
+  background-color: #ffccff;
+  text-align: center;
+}
+.card-inside{
+  margin-top: 20px;
+}
+.card-dossier{
+  margin-top: 20px;
+}
+
+.footer-2{
+  background-color: #ffcccc;
+  text-align: center;
+}
+.footer-1{
+  background-color:  #ffffb3 ;
+  text-align: center;
+}
+.footer-3{
+  background-color: #ffccff;
+  text-align: center;
+}
+#verify{
+  margin-top: 500px;
+}

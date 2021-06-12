@@ -1,1 +1,219 @@
-<p>ajouter-visite works!</p>
+<div class="row" style="margin:20px" id="verify">
+ <div class="col-md-9"><input type="text" class="form-control" placeholder="Numero CIN" name="cin" [(ngModel)]="visiteur.numCin"  ></div>
+ <div class="col-md-3"><button class="btn btn-primary" (click)="verify()"> Verify  </button></div>
+</div>
+<div *ngIf="verificaton() == false"  >
+<div class="card card-outside" >
+  <div class="card-header header-1"> Information de la Demande : </div>
+  <div class="card-body">
+    <form  class="form-group">
+      <div class="row">
+        <div class="col-md-6"><span><label> Num d'Ordre </label><input type="text" class="form-control" placeholder="num ordre" name="numOrder" [(ngModel)]="demande.numOrder" ></span> </div>
+        <div class="col-md-6"><span><label> Objet </label><input type="text" class="form-control" placeholder="objet" name="objet-demande"  [(ngModel)]="demande.objet"></span> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><span><label> Description </label><textarea type="text-area" class="form-control" placeholder=" donnez une description a votre demande " name="description" [(ngModel)]="demande.description"> </textarea> </span> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><label> date visite </label><input type="date" class="form-control" name="dateVisite" [(ngModel)]="demande.dateVisite"> </div>
+        <div class="col-md-3"><label> heur d'entrer </label><input type="number" class="form-control" min="00" max="23" name="heurEntrer"  [(ngModel)]="demande.heurEntrer"></div>
+        <div class="col-md-3"><label> heur de sortie </label><input type="number" class="form-control" min="00" max="23" name="heurSortie" [(ngModel)]="demande.heurSortie" ></div>
+        <div class="col-md-3"><label> nombre des visiteur </label><input type="number" class="form-control" min="0" name="nbrVisiteur" [(ngModel)]="demande.nbrVisiteur" ></div>
+      </div>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-md-4"><label> date Mise A Jour</label><input type="date" class="form-control" name="dateMaj" [(ngModel)]="demande.dateMaj"></div>
+        <div class="col-md-4"><label> date Limite</label><input type="date" class="form-control" name="dateLimite" [(ngModel)]="demande.dateLimite "></div>
+        <div class="col-md-4"><label> date Evenement</label><input type="date" class="form-control" name="dateEvenement" [(ngModel)]="demande.dateEvenement"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><label>  </label><select name="theme" class="form-select" aria-label=" choisir le theme de votre demande " name="theme" [(ngModel)]="demande.theme.codeTheme" >
+          <option selected >choisir le theme de votre demande</option>
+          <option value="constuction"> Construction </option>
+          <option value="12"> 12 </option>
+          <option value="theme2"> theme2 </option>
+          <option value="theme3"> theme3 </option>
+          <option value="theme4"> theme4 </option> </select> </div>
+        <div class="col-md-4"><label> </label><select name="type"  class="form-select" aria-label=" choisir le type de votre demande " name="typeDemande" [(ngModel)]="demande.typeDemande.codeTypeDemande">
+          <option selected >choisir le type de votre demande</option>
+          <option value="plainte"> plainte </option>
+          <option value="12"> 12 </option>
+          <option value="demande"> demande </option>
+          <option value="type3"> type3 </option>
+          <option value="type4"> type4 </option> </select> </div>
+        <div class="col-md-4"><label> </label><select name="type"  class="form-select" aria-label=" choisir le statut de votre demande " name="statut" [(ngModel)]="demande.statut.codeStatut">
+          <option selected >choisir le statut de votre demande</option>
+          <option value="plainte"> traite </option>
+          <option value="plainte"> 12 </option>
+          <option value="demande"> en cours </option>
+           </select> </div>
+      </div>
+
+
+
+      <div class="card" style="border: 2px solid black ; margin-top: 20px ; padding: 10px">
+        <div class="row">
+          <div class="col-md-4"><label> info division </label><input type="number" class="form-control" name="infoDivision" [(ngModel)]="demande.infoDivision" ></div>
+          <div class="col-md-4"><label> Action division </label><input type="text" placeholder="quel est l'action de la division" class="form-control" name="actionDivision" [(ngModel)]="demande.actionDivision">   </div>
+          <div class="col-md-4"><label> Responsable de la division</label><input type="text" placeholder="nom du Responsable" class="form-control" name="respDivision" [(ngModel)]="demande.respDivision"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><label>  </label><select name="service" class="form-select" name="serv" [(ngModel)]="demande.serviceExt.codeServiceExt" >
+            <option selected >choisir le service concerné  </option>
+            <option value="constuction"> Construction </option>
+            <option value="service2"> service2 </option>
+            <option value="12"> 12 </option>
+            <option value="service3"> service3 </option>
+            <option value="service4"> service4 </option> </select> </div>
+          <div class="col-md-6"><label> </label><select name="division"  class="form-select" name="nomdivision" [(ngModel)]="demande.division.codeDivision" >
+            <option selected >choisir la division concerne</option>
+            <option value="division2"> Division2 </option>
+            <option value="12"> 12 </option>
+            <option value="division4"> Division4</option>
+            <option value="division5"> division5 </option> </select> </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><label>  </label><select name="service" class="form-select" name="nomcommune" [(ngModel)]="demande.communeLocale.codeCommuneLocale" >
+            <option selected >choisir la commune concerné </option>
+            <option value="commune1"> commune1 </option>
+            <option value="12"> 12 </option>
+            <option value="commune3"> commune3 </option>
+            <option value="commune4"> commune4 </option> </select> </div>
+          <!--   <div class="col-md-6"><label> </label><select name="division"  class="form-select" >
+            <option selected >choisir le service exterieur concerne si exist</option>
+            <option value="service1"> service1 </option>
+            <option value="service2"> service2 </option> </select> </div>-->
+        </div>
+      </div>
+
+    </form>
+
+
+    <!-- debut de card dossier -->
+    <div class="card card-dossier" >
+      <div class="card-header header-3 ">creer le dossier de la demande : </div>
+      <div class="card-body">
+        <form action="" class="form">
+          <label> Nom Dossier </label><input type="text" class="form-control" name="dossier-nom" [(ngModel)]="demande.Dossier.nomDossier" >
+          <label> Numéro de Dossier </label><input type="Number" class="form-control" name="dossier-num" [(ngModel)]="demande.Dossier.numDossier">
+        </form>
+      </div>
+      <!--   <div class="card-footer footer-3"> <button class="btn">Creer</button> </div>-->
+      </div>
+      <!-- fin de card dossier -->
+
+
+  </div>
+  <!-- fin de body out side -->
+
+  <div class="card-footer footer-1" >
+    <button class="btn-submit " (click)="ajouterVisite()" > submit</button>
+  </div>
+</div>
+  <!-- fin de card out side -->
+</div>
+
+  <!-- debut de card visiteur -->
+  <div *ngIf="verificaton() == true" >
+  <div class="card card-inside"  >
+    <div class="card-header header-2 "> informations du Visiteur : </div>
+
+
+    <div class="card-body">
+
+
+      <form action="" class="form-group">
+        <div class="row">
+          <div class="col-md-6"><span><label> Nom </label><input type="text" class="form-control" placeholder="last name" [(ngModel)]="visiteur.nomFR" name="lastName"></span>
+          </div>
+          <div class="col-md-6"><span><label> Prenom </label><input type="text" class="form-control"
+                                                                    placeholder="last name" [(ngModel)]="visiteur.prenomFR" name="firstName"></span></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12"><span><label> Cin </label><input type="text" class="form-control"
+                                                                  placeholder="CIN" [(ngModel)]="visiteur.numCin" name="cin" ></span></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12"><span><label> Adresse </label><input type="text" class="form-control"
+                                                                      placeholder="Adresse" [(ngModel)]="visiteur.adresse" name="adresse"></span></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12"><span><label> Telephone </label><input type="text" class="form-control"
+                                                                        placeholder="Phone" [(ngModel)]="visiteur.telephone" name="phone"></span></div>
+        </div>
+        <div class="row" >
+          <div class="col-md-3">
+            <span>
+                <label > Sexe </label>
+                <select name="dossier" class="form-select" [(ngModel)]="visiteur.sexe.codeSexe" name="sexe">
+                       <option value="dossier1" >Homme</option>
+                       <option value="12" >112</option>
+                </select>
+             </span>
+          </div>
+
+          <div class="col-md-3" >
+            <span>
+                <label style="margin-right: 5px"> Commune </label>
+                <select name="dossier" class="form-select" [(ngModel)]="visiteur.commune.codeCommune" name="commune">
+                       <option value="dossier1">Commune1</option>
+                       <option value="12">12</option>
+                       <option value="dossier2">Commune2</option>
+                </select>
+             </span>
+          </div>
+
+          <div class="col-md-3" >
+            <span>
+                <label style="margin-right: 5px" > Classe </label>
+                <select name="dossier" class="form-select" [(ngModel)]="visiteur.classe.codeClasse" name="classe">
+                       <option value="dossier1">marocain</option>
+                       <option value="dossier2">Maroccain residant a l'etranger</option>
+                       <option value="dossier2">Etranger residant</option>
+                       <option value="12"> </option>
+                </select>
+             </span>
+          </div>
+
+          <div class="col-md-3">
+            <span><label> Date de naissance </label><input type="date" class="form-control" [(ngModel)]="visiteur.dateNaissance" name="dateNaissance"></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12"><span><label> Email </label><input type="email" class="form-control"
+                                                                    placeholder="Email" [(ngModel)]="visiteur.email" name="mail"></span></div>
+        </div>
+
+      </form>
+
+
+    </div>
+    <!-- fin de body visiteur -->
+    <div class="card-footer footer-2 badge"> <button class="btn" (click)="ajouterVisiteur()"> ajouter </button> </div>
+
+
+  </div>
+  </div>
+  <!-- fin de card visiteur -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

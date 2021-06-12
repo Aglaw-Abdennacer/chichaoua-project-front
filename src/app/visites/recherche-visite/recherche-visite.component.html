@@ -1,1 +1,95 @@
-<p>recherche-visite works!</p>
+<div class="countainer">
+  <div class="card form-group">
+    <div class="card-body">
+      <h4>Recherche Par:</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <span><label for="numOrder">Numero D'ordre:</label><input type="numOrder" id="numOrder"
+                                                                    class="form-control" [(ngModel)]="demande.numOrder"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <span><label for="theme">Status:</label><select name="theme" id="theme" class="form-control form-select select"
+                                                           [(ngModel)]="vo.theme">
+            <option value="pasencore">s1</option>
+            <option value="traitee">s2</option>
+          </select></span>
+        </div>
+        <div class="col-md-4">
+          <span><label for="typeDemande">Type:</label><select name="typeDemande" id="typeDemande" class="form-control select form-select" [(ngModel)]="vo.typeDemande">
+            <option value="string">t1</option>
+            <option value="eau">t2</option>
+          </select></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <span><label for="datedepart">A partir de:</label><input type="statut" id="datedepart"
+                                                                   class="form-control" [(ngModel)]="vo.statut"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <button class="btn  mt-4 ml-md-1 btn-success" (click)="findBynumOrder(demande.numOrder)">lancer</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4>Liste des visites:</h4>
+      <div><p>Extraire sous forme:</p></div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-success btn-block" >Download PDF</button>
+      </div>
+      <div class="row">
+        <div class="col-md-2" id="nbrShow"><label>show:</label>
+          <select name="nbrShow"  class="form-control form-select select ">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="col-md-7"></div>
+        <div class="col-md-3"><span><label>Search:</label><input type="text" class="form-control"></span></div>
+      </div>
+      <div class="container" id="htmlData" #content>
+
+        <table class="table table-bordered ">
+          <thead>
+          <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Réponse</th>
+            <th scope="col">Numero d'ordre</th>
+            <th scope="col">Objet</th>
+            <th scope="col">theme</th>
+            <th scope="col">statut</th>
+            <th scope="col">Type demande</th>
+            <th scope="col">remarque</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let d of demandes">
+            <td>
+              <span><i class="fa  btn btn-primary fa-edit mr-2"></i></span>
+              <span><i class="fa  btn btn-danger fa-eye fa-remove mr-2"></i></span>
+              <span><i class="fa  btn btn-danger fa-trash fa-remove mr-2"></i></span>
+            </td>
+            <td><span><i class="fa  btn btn-primary btn-success  mr-2">Ajouter Réponse</i></span></td>
+            <td>{{d.numOrder}}</td>
+            <td>{{d.objet}}</td>
+            <td>{{d.theme.nomThemeFR}}</td>
+            <td>{{d.statut.nomStatutFR}}</td>
+            <td>{{d.typeDemande.nomTypeDemandeFR}}</td>
+            <td>{{d.remarque}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

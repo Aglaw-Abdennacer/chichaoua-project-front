@@ -1,0 +1,11 @@
+.card{
+  margin-top: 15px;
+}
+body{
+  background-color: rgba(252,246,245,255);
+}
+.card-footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
